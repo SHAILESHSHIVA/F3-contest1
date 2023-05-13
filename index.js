@@ -1,0 +1,203 @@
+// const button = document.getElementById("btn");
+
+// button.addEventListener("click", async () => {
+//   try {
+//     await PromiseAPI1();
+//     await PromiseAPI2();
+//     await PromiseAPI3();
+//   } catch (error) {
+//     console.error(error);
+//   }
+// });
+
+// function PromiseAPI1() {
+//   return new Promise((resolve) => {
+//     setTimeout(async () => {
+//       const response = await fetch("https://dummyjson.com/posts");
+//       const data = await response.json();
+//       const resultDiv = document.getElementById("container_1");
+
+//       console.log(data.posts);
+//       data.posts.forEach((el) => {
+//         // console.log(element.id)
+
+//         let tr = document.createElement("tr");
+//         let td = document.createElement("td");
+//         td.innerHTML = el.id;
+//         let td2 = document.createElement("td");
+//         td2.innerHTML = el.title;
+//         // resultDiv.append(tr,td);
+//         let td3 = document.createElement("td");
+//         td3.innerHTML = el.body;
+//         resultDiv.append(tr, td, td2, td3);
+//       });
+
+//       // resultDiv.textContentarray = `PromiseAPI1 returned data: ${JSON.stringify(data)}`;
+//       // resultDiv.style.color = "red"
+//       // document.body.appendChild(resultDiv);
+//       resolve(true);
+//     }, 1000);
+//   });
+// }
+
+// function PromiseAPI2() {
+//   return new Promise((resolve) => {
+//     setTimeout(async () => {
+//       const response = await fetch("https://dummyjson.com/products");
+//       const data = await response.json();
+//       //   const resultDiv = document.createElement("div");
+//       //   //const table = document.getElementById('container_1');
+//       //   resultDiv.textContent = `PromiseAPI2 returned data: ${JSON.stringify(data)}`;
+//       //   resultDiv.style.color = "blue"
+//       //   document.body.appendChild(resultDiv);
+//       const resultDiv = document.getElementById("container_2");
+//       let h = document.getElementById("h2");
+
+//       console.log(data.products);
+//       data.products.forEach((el) => {
+//         // console.log(element.id)
+
+//         let tr = document.createElement("tr");
+
+//         let td = document.createElement("td");
+//         td.innerHTML = el.id;
+//         let td2 = document.createElement("td");
+//         td2.innerHTML = el.title;
+//         // resultDiv.append(tr,td);
+//         let td3 = document.createElement("td");
+//         td3.innerHTML = el.description;
+//         let td4 = document.createElement("td");
+//         td4.src = el.thumbnail;
+//         resultDiv.append(tr, td, td2, td3, td4);
+//       });
+//       resolve(true);
+//     }, 2000);
+//   });
+// }
+
+// function PromiseAPI3() {
+//   return new Promise((resolve) => {
+//     setTimeout(async () => {
+//       const response = await fetch("https://dummyjson.com/todos");
+//       const data = await response.json();
+//       //   const resultDiv = document.createElement("div");
+//       //   resultDiv.textContent = `PromiseAPI3 returned data: ${JSON.stringify(data)}`;
+//       //   resultDiv.style.color = "green"
+//       //   document.body.appendChild(resultDiv);
+//       console.log(data);
+//       const resultDiv = document.getElementById("container_3");
+
+//       data.todos.forEach((el) => {
+//         // console.log(element.id)
+
+//         let tr = document.createElement("tr");
+//         let td = document.createElement("td");
+//         td.innerText = el.id;
+//         let td2 = document.createElement("td");
+//         td2.innerHTML = el.todo;
+//         // resultDiv.append(tr,td);
+//         let td3 = document.createElement("td");
+//         td3.innerHTML = el.completed;
+//         let td4 = document.createElement("td");
+//         td4.innerHTML = el.userId;
+//         resultDiv.append(tr, td, td2, td3, td4);
+//       });
+//       resolve(true);
+//     }, 3000);
+//   });
+// }
+
+const btn = document.getElementById("btn");
+
+btn.addEventListener("click", async () => {
+  try {
+    await Promise1();
+    await Promise2();
+    await Promise3();
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// https://dummyjson.com/posts
+// https://dummyjson.com/products
+// https://dummyjson.com/todos
+
+function Promise1() {
+  return new Promise((resolve) => {
+    setTimeout(async () => {
+      const res = await fetch("https://dummyjson.com/posts");
+      const data = await res.json();
+      const table1 = document.getElementById("container_1");
+
+      data.posts.forEach((ele) => {
+        let tr = document.createElement("tr");
+        let td = document.createElement("td");
+        td.innerText = ele.id;
+        let td2 = document.createElement("td");
+        td2.innerText = ele.title;
+        let td3 = document.createElement("td");
+        td3.innerText = ele.body;
+        table1.append(tr, td, td2, td3);
+      });
+
+      resolve(true);
+    }, 1000);
+  });
+}
+
+function Promise2() {
+  return new Promise((resolve) => {
+    setTimeout(async () => {
+      const res = await fetch("https://dummyjson.com/products");
+      const data = await res.json();
+      const table2 = document.getElementById("container_2");
+
+      console.log(data.products);
+
+      data.products.forEach((ele) => {
+        let tr = document.createElement("tr");
+        let td = document.createElement("td");
+        td.innerText = ele.id;
+        let td2 = document.createElement("td");
+        td2.innerText = ele.title;
+        let td3 = document.createElement("td");
+        td3.innerText = ele.description;
+        let td4 = document.createElement("td");
+        td4.src = ele.thumbnail;
+        // tr.append(td, td2, td3);
+        // table1.append(tr);
+        table2.append(tr, td, td2, td3, td4);
+      });
+
+      resolve(true);
+    }, 2000);
+  });
+}
+
+function Promise3() {
+  return new Promise((resolve) => {
+    setTimeout(async () => {
+      const response = await fetch("https://dummyjson.com/todos");
+      const data = await response.json();
+
+      console.log(data);
+      const resultDiv = document.getElementById("container_3");
+
+      data.todos.forEach((el) => {
+        let tr = document.createElement("tr");
+        let td = document.createElement("td");
+        td.innerText = el.id;
+        let td2 = document.createElement("td");
+        td2.innerHTML = el.todo;
+
+        let td3 = document.createElement("td");
+        td3.innerText = el.completed;
+        let td4 = document.createElement("td");
+        td4.innerText = el.userId;
+        resultDiv.append(tr, td, td2, td3, td4);
+      });
+      resolve(true);
+    }, 3000);
+  });
+}
